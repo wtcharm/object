@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.com</groupId>
+	<artifactId>objcet</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>objcet</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<microcloud.version>0.0.1</microcloud.version>
+		<spring-boot-dependencies.version>1.5.8.RELEASE</spring-boot-dependencies.version>
+		<spring-cloud-dependencies.version>Dalston.SR4</spring-cloud-dependencies.version>
+		<jdk.version>1.8</jdk.version>
+		<druid.version>1.1.0</druid.version>
+		<junit.version>4.12</junit.version>
+		<mybatis-spring-boot-starter.version>1.3.0</mybatis-spring-boot-starter.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<obj.version>0.0.1-SNAPSHOT</obj.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis-spring-boot-starter.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>cn.com</groupId>
+				<artifactId>objcet-client</artifactId>
+				<version>${obj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.7</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<finalName>objcet</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.yml</include>
+					<include>**/*.xml</include>
+					<include>**/*.tld</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.yml</include>
+					<include>**/*.xml</include>
+					<include>**/*.tld</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source><!-- 源代码使用的开发版本 -->
+					<target>${jdk.version}</target><!-- 需要生成的目标class文件的编译版本 -->
+					<encode>${project.build.sourceEncoding}</encode>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<modules>
+		<module>objcet-api</module>
+		<module>object-cilent</module>
+		<module>objcet-service</module>
+		<module>objcet-client</module>
+	</modules>
+</project>

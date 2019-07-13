@@ -1,0 +1,14 @@
+#---------------- 服务端口-----------------------------
+server:
+  port: 5081                               #定义服务端口
+#----------------------------------------------------
+spring:
+  profiles:
+    active: 'dev'
+  application:
+    name: objcet-api
+    
+#--------------日志数据 ------------------------
+logging:
+  config: classpath:logs/logback-spring.xml
+  

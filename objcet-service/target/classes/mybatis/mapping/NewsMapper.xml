@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.objcet.service.mapper.NewsMapper">
+	<resultMap id="BaseResultMap" type="cn.com.objcet.client.vo.News">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="image" jdbcType="VARCHAR" property="image" />
+		<result column="photo" jdbcType="VARCHAR" property="photo" />
+		<result column="state" jdbcType="VARCHAR" property="state" />
+		<result column="createtime" jdbcType="VARCHAR" property="createtime" />
+		<result column="lordnews" jdbcType="VARCHAR" property="lordnews" />
+		<result column="dr" jdbcType="VARCHAR" property="dr" />
+		<result column="source" jdbcType="VARCHAR" property="source" />
+		<result column="site" jdbcType="VARCHAR" property="site" />
+		<result column="brand" jdbcType="VARCHAR" property="brand" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, title, name, image, photo, state, createtime, lordnews,
+		dr, source,
+		site, brand
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectByIdAndNoDr" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news
+		where id = #{id,jdbcType=INTEGER} AND dr = 0
+	</select>
+
+	<select id="selectByNewsAll" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news
+		where brand = #{brand} 
+		AND lordnews =0 
+		ORDER BY createtime DESC
+		limit #{pageNum},#{pageSize}
+	</select>
+
+	<select id="selectByLordnews" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news
+		where lordnews = #{lordnews,jdbcType=VARCHAR} 
+		AND brand =#{brand,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectNewsAll" 
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from news
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from news
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="cn.com.objcet.client.vo.News">
+		insert into news (id, title,
+		name,
+		image, photo, state,
+		createtime, lordnews, dr,
+		source, site, brand
+		)
+		values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{image,jdbcType=VARCHAR},
+		#{photo,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+		#{createtime,jdbcType=VARCHAR}, #{lordnews,jdbcType=VARCHAR},
+		#{dr,jdbcType=VARCHAR},
+		#{source,jdbcType=VARCHAR},
+		#{site,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cn.com.objcet.client.vo.News">
+		insert into news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="lordnews != null">
+				lordnews,
+			</if>
+			<if test="dr != null">
+				dr,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+			<if test="site != null">
+				site,
+			</if>
+			<if test="brand != null">
+				brand,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="lordnews != null">
+				#{lordnews,jdbcType=VARCHAR},
+			</if>
+			<if test="dr != null">
+				#{dr,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=VARCHAR},
+			</if>
+			<if test="site != null">
+				#{site,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				#{brand,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.com.objcet.client.vo.News">
+		update news
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				image = #{image,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				photo = #{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="lordnews != null">
+				lordnews = #{lordnews,jdbcType=VARCHAR},
+			</if>
+			<if test="dr != null">
+				dr = #{dr,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=VARCHAR},
+			</if>
+			<if test="site != null">
+				site = #{site,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				brand = #{brand,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.com.objcet.client.vo.News">
+		update news
+		set
+		title = #{title,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		image = #{image,jdbcType=VARCHAR},
+		photo = #{photo,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR},
+		createtime =
+		#{createtime,jdbcType=VARCHAR},
+		lordnews =
+		#{lordnews,jdbcType=VARCHAR},
+		dr = #{dr,jdbcType=VARCHAR},
+		source =
+		#{source,jdbcType=VARCHAR},
+		site = #{site,jdbcType=VARCHAR},
+		brand =
+		#{brand,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateByIdAndDr" parameterType="cn.com.objcet.client.vo.News">
+		update news
+		set
+		dr = #{dr,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+</mapper>

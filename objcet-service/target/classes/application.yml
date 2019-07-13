@@ -1,0 +1,21 @@
+#---------------- 服务端口-----------------------------
+server:
+  port: 5080                                #定义服务端口
+# ---------- 指定执行环境 -----------
+spring:
+  profiles:
+    active: 'dev'         #环境引入
+  application:
+    name: objcet-service                    #定义服务名称
+    
+#--------------日志数据 ------------------------
+logging:
+  config: classpath:logs/logback-spring.xml
+
+#---------------配置mybatis文件------------------------
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: cn.com.objcet.client.vo             # 定义所有操作类的别名所在包
+  mapper-locations:                                         # 所有的mapper映射文件
+  - classpath:mybatis/mapping/*.xml                         # 所有的接口实现的
+  

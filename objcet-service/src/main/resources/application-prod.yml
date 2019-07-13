@@ -1,0 +1,62 @@
+#----------------------- druid 的数据源-------------
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource     # 配置当前要使用的数据源的操作类型
+     #druid相关配置
+    druid:
+    # druid 监控
+    #访问路径 - http://localhost/druid/login.html
+      aop-patterns:
+      - cn.com.objcet.*                            #所要监控的包名 
+      stat-view-servlet:
+        login-password: admin                      #监控页面登录用户名
+        login-username: root                       #监控页面登录密码                       
+      #监控统计拦截的filters
+      filters: stat
+      driver-class-name: com.mysql.jdbc.Driver
+      #基本属性
+      url: jdbc:mysql://localhost:3306/news?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root    #用户名
+      password:         #密码
+      #配置初始化大小/最小/最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      #数据库查询语句校验
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+          
+# 整合redis 数据库
+#  redis:
+#    host: 39.106.162.137
+#    port: 6379
+#    password: madworld
+#    timeout: 1000
+#    database: 0
+#    pool:
+#      max-active: 10
+#      max-idle: 8
+#      min-idle: 2
+#      max-wait: 100
+#----------------------------------------------------
+
+eureka: 
+  instance:                                                 # eureak实例定义
+    lease-renewal-interval-in-seconds: 2                    # 设置心跳的时间间隔（默认是30秒）
+    lease-expiration-duration-in-seconds: 5                 # 如果现在超过了5秒的间隔（默认是90秒）
+    instance-id: objcet-service                             # 在信息列表时显示主机名称
+    prefer-ip-address: true                                 # 访问的路径变为IP地址
+  client:                                                   # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://edmin:mldnjava@localhost:7001/eureka/
