@@ -13,8 +13,8 @@
 
 	<properties>
 		<microcloud.version>0.0.1</microcloud.version>
-		<spring-boot-dependencies.version>1.5.8.RELEASE</spring-boot-dependencies.version>
-		<spring-cloud-dependencies.version>Dalston.SR4</spring-cloud-dependencies.version>
+		<spring-boot-dependencies.version>1.5.9.RELEASE</spring-boot-dependencies.version>
+		<spring-cloud-dependencies.version>Edgware.RELEASE</spring-cloud-dependencies.version>
 		<jdk.version>1.8</jdk.version>
 		<druid.version>1.1.0</druid.version>
 		<junit.version>4.12</junit.version>
@@ -99,14 +99,13 @@
 				<configuration>
 					<source>${jdk.version}</source><!-- 源代码使用的开发版本 -->
 					<target>${jdk.version}</target><!-- 需要生成的目标class文件的编译版本 -->
-					<encode>${project.build.sourceEncoding}</encode>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	<modules>
 		<module>objcet-api</module>
-		<module>object-cilent</module>
 		<module>objcet-service</module>
 		<module>objcet-client</module>
 	</modules>
